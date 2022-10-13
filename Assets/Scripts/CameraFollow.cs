@@ -1,16 +1,31 @@
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
 
-    public Transform player;
-
-    public float vectorX = 0, vectorY = 1, vectorZ = -5;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float translateSpeed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private Transform target;
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        transform.position = player.transform.position + new Vector3(vectorX, vectorY, -vectorZ);
-        transform.rotation = player.transform.rotation;
+        HandleTranslation();
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        var direction = target.position - transform.position;
+        var rotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void HandleTranslation()
+    {
+        var targetPosition = target.TransformPoint(offset);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
     }
 }
