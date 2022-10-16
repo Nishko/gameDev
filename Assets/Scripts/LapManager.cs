@@ -15,6 +15,21 @@ public class LapManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
     }
 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void OpenCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<CarController>())

@@ -35,6 +35,6 @@ public class Acheivments : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShowAchievementsUI();
+        
     }
 }
