@@ -13,6 +13,9 @@ public class CarController : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
 
+    public int lapNumber;
+    public int checkpointIndex;
+
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
@@ -26,6 +29,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
+
+    private void Start()
+    {
+        lapNumber = 1;
+        checkpointIndex = 0;
+    }
 
     private void FixedUpdate()
     {
